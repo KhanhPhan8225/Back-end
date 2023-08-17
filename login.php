@@ -1,6 +1,8 @@
 <?php
-include "class.database.php";
-global $conn;
+    include "class.database.php";
+    global $conn;
+    session_start();
+    ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,16 +24,20 @@ global $conn;
                             <div class="col-lg-6">
                                 <div class="p-5">
 								<?php
-								if($_POST){
+								if($_SERVER["REQUEST_METHOD"]=="POST")
+                                {
 	
 									$user_name=$_POST['user_name'];
 									$user_pass=$_POST['user_pass'];
 									$result=mysqli_query($conn,"SELECT * from db_users where username='$user_name' and pass='$user_pass'");
 									$row=mysqli_fetch_assoc($result);
-									//var_dump($row);
-									//die;
 									if($row){
-									  header("Location:thiduatuan.php");
+                                        if($row["role"]=="1"){
+                                            header("Location:thiduatuan.php");
+                                        }else{
+                                            header("Location:table.php");
+                                        }
+									  
 									}else{
 										echo '<p style="color:red">Tên đăng nhập hoặc mật khẩu không đúng!</p>';
 									}
@@ -42,8 +48,7 @@ global $conn;
                                     </div>
                                     <form class="user" action="login.php" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                            <input type="text" class="form-control form-control-user"
                                                 placeholder="Enter Email Address..." name="user_name">
                                         </div>
                                         <div class="form-group">
