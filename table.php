@@ -1,5 +1,4 @@
 
-<?php require_once "class.database.php"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,18 +12,24 @@
     
     <?php
         session_start();
+        echo $_SESSION['id_lop'];
+        if(empty($_SESSION['id_lop'])){
+            header('location:login.php');
+        }
+    ?>
+    <?php
+
         if(isset($_POST["add"])){
             $ten_lop= $_SESSION['id_lop'];
             $gio_tot=$_POST['gio_tot'];
-            $gio_kha=$_POST['gio_kha'];
             $gio_tb=$_POST['gio_tb'];
             $gio_yeu=$_POST['gio_yeu'];
+            $gio_kem=$_POST['gio_kem'];
             $so_diem_gioi=$_POST['so_diem_gioi'];
             $so_diem_yeu_kem=$_POST['so_diem_yeu_kem'];
-            $vi_pham_atgt=$_POST['vi_pham_atgt'];
 
-            if($conn -> query("INSERT INTO thiduatuan (ten_lop,gio_tot,gio_kha,gio_tb,gio_yeu,so_diem_gioi,so_diem_yeu_kem,vi_pham_atgt) VALUE (N'$ten_lop',N'$gio_tot',N'$gio_kha',N'$gio_tb',N'$gio_yeu',N'$so_diem_gioi',N'$so_diem_yeu_kem',N'$vi_pham_atgt')")){
-                echo "<script>alert('Lưu thành công!');</script>";
+            if($conn -> query("INSERT INTO thiduatuan (ten_lop,gio_tot,gio_tb,gio_yeu,gio_kem,so_diem_gioi,so_diem_yeu_kem) VALUE (N'$ten_lop',N'$gio_tot',N'$gio_tb',N'$gio_yeu',N'$gio_kem',N'$so_diem_gioi',N'$so_diem_yeu_kem')")){
+                header("Location:nenep.php");
             }else{
                 echo "<script>alert('Lưu thất bại!');</script>";
             }
@@ -41,16 +46,16 @@
                 <input name="gio_tot" class="form-control" placeholder="Nếu 100% giờ tốt nhập 1, không 100% nhập 0.">
             </div>
             <div class="form-group">
-                <label for="gio_kha">Số giờ khá</label>
-                <input name="gio_kha" class="form-control" placeholder="Nếu không có nhập:0">
-            </div>
-            <div class="form-group">
                 <label for="gio_tb">Số giờ trung bình</label>
                 <input name="gio_tb" class="form-control" placeholder="Nếu không có nhập:0">
             </div>
             <div class="form-group">
                 <label for="gio_yeu">Số giờ yếu</label>
                 <input name="gio_yeu" class="form-control" placeholder="Nếu không có nhập:0">
+            </div>
+            <div class="form-group">
+                <label for="gio_kem">Số giờ kém</label>
+                <input name="gio_kem" class="form-control" placeholder="Nếu không có nhập:0">
             </div>
             <div class="form-group">
                 <label for="so_diem_gioi">Số điểm giỏi</label>
@@ -60,10 +65,6 @@
                 <label for="so_diem_yeu_kem">Số điểm yếu kém</label>
                 <input name="so_diem_yeu_kem" class="form-control" placeholder="Nếu không có nhập:0">
             </div>
-            <div class="form-group">
-            <label for="vi_pham_atgt">Số lần vi phạm ATGT</label>
-            <input name="vi_pham_atgt" class="form-control" placeholder="Nếu không có nhập:0">
-        </div>
             <button type="submit" class="btn btn-primary" name="add">Lưu</button>
         </form>
     </div>
