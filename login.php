@@ -2,7 +2,6 @@
     include "class.database.php";
     global $conn;
     session_start();
-    ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,10 +33,10 @@
 									if($row){
                                         if($row["role"]=="1"){
                                             header("Location:thiduatuan.php");
+                                            
                                         }else{
                                             $_SESSION['id_lop']=$row['id_lop'];
                                             header("Location:table.php");
-                                            #echo $_SESSION['id_lop'];
                                         }
 									  
 									}else{
