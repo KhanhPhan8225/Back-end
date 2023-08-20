@@ -1,18 +1,24 @@
 
-<?php require_once "class.database.php"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <title>Bảng Nề Nếp</title>
+    <title>Bảng nề nếp</title>
 </head>
 <body>
+
     <?php require_once "class.database.php"?>
-    
     <?php
         session_start();
+
+        if(empty($_SESSION['id_lop'])){
+            header('location:login.php');
+        }
+    ?>
+        <h2>Chi Đoàn <?php echo $_SESSION['id_lop'];?></h2>
+    <?php
         if(isset($_POST["add"])){
             $ten_lop= $_SESSION['id_lop'];
             $loi_2diem=$_POST['loi_2diem'];
@@ -31,6 +37,11 @@
         $conn->close();
     ?>
     <div class="container">
+        <div class="alert alert-success alert- dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Lưu thành công!</strong> Vui lòng nhập lỗi nề nếp tại đây.
+        </div>
+
         <form method="POST" action="">
 
             <div class="form-group">
@@ -50,6 +61,9 @@
                 <input name="loi_20diem" class="form-control" placeholder="Gian lận, đánh nhau, hút thuốc, trộm cắp, phá hoại tài sản chung, vi phạm ATGT, gửi xe ngoài,...">
             </div>
             <button type="submit" class="btn btn-primary" name="add">Lưu</button>
+            <div>
+                <a href="logout.php" class="btn btn-info" role="button">Logout</a>
+            </div>
         </form>
     </div>
 </body>
