@@ -2,7 +2,6 @@
 include "class.database.php";
 global $conn;
 $result=mysqli_query($conn,"SELECT * FROM thiduatuan");
-//var_dump(mysqli_fetch_assoc($result));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,27 +25,25 @@ $result=mysqli_query($conn,"SELECT * FROM thiduatuan");
 				<thead>
 					<tr>
 						<th>Lớp</th>
-						<th>Số giờ tốt</th>
-						<th>Số giờ khá</th>
+						<th>100% số giờ đạt loại tốt</th>
 						<th>Số giờ trung bình</th>                                           
-						<th>Số giờ yếu</th>  
+						<th>Số giờ yếu</th>
+						<th>Số giờ kém</th>  
 						<th>Số điểm giỏi</th>
-                        <th>Số điểm kém</th>
-                        <th>Số lần vi phạm ATGT</th>    						
+                        <th>Số điểm kém</th>   						
 					</tr>
 				</thead>
 			   
 				<tbody>
 				<?php while($row=mysqli_fetch_assoc($result)):?>
 					<tr>
-						<td><?=$row['id_lop']?></td>
+						<td><?=$row['ten_lop']?></td>
 						<td><?=$row['gio_tot']?></td>
-						<td><?=$row['gio_kha']?></td>
 						<td><?=$row['gio_tb']?></td>
 						<td><?=$row['gio_yeu']?></td>   
+						<td><?=$row['gio_kem']?></td>  						
 						<td><?=$row['so_diem_gioi']?></td>
                         <td><?=$row['so_diem_yeu_kem']?></td>
-                        <td><?=$row['vi_pham_atgt']?></td>  						
 					</tr>
 					<?php endwhile; ?>
 				  
