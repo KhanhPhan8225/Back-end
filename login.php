@@ -35,11 +35,14 @@
                                         if($row["role"]=="1"){
                                             header("Location:thiduatuan.php");
                                         }else{
+                                            $_SESSION['id_lop']=$row['id_lop'];
                                             header("Location:table.php");
+                                            #echo $_SESSION['id_lop'];
                                         }
 									  
 									}else{
-										echo '<p style="color:red">Tên đăng nhập hoặc mật khẩu không đúng!</p>';
+                                        echo '<script>alert("Tên đăng nhập hoặc mật khẩu không đúng!")</script>';
+                                            
 									}
 									}
 									?>							
