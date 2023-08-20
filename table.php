@@ -17,6 +17,7 @@
             header('location:login.php');
         }
     ?>
+    <h2>Chi Đoàn <?php echo $_SESSION['id_lop'];?></h2>
     <?php
 
         if(isset($_POST["add"])){
