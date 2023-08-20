@@ -1,3 +1,5 @@
+
+<?php require_once "class.database.php"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +9,12 @@
     <title>Bảng Thi Đua</title>
 </head>
 <body>
-    <?php require_once "class.database.php" ?>
+    <?php require_once "class.database.php"?>
+    
     <?php
+        session_start();
         if(isset($_POST["add"])){
-            $id_lop= $_POST['id_lop'];
+            $ten_lop= $_SESSION['id_lop'];
             $gio_tot=$_POST['gio_tot'];
             $gio_kha=$_POST['gio_kha'];
             $gio_tb=$_POST['gio_tb'];
@@ -19,22 +23,19 @@
             $so_diem_yeu_kem=$_POST['so_diem_yeu_kem'];
             $vi_pham_atgt=$_POST['vi_pham_atgt'];
 
-            if($conn -> query("INSERT INTO thiduatuan (id_lop,gio_tot,gio_kha,gio_tb,gio_yeu,so_diem_gioi,so_diem_yeu_kem,vi_pham_atgt) VALUE (N'$id_lop',N'$gio_tot',N'$gio_kha',N'$gio_tb',N'$gio_yeu',N'$so_diem_gioi',N'$so_diem_yeu_kem',N'$vi_pham_atgt')")){
+            if($conn -> query("INSERT INTO thiduatuan (ten_lop,gio_tot,gio_kha,gio_tb,gio_yeu,so_diem_gioi,so_diem_yeu_kem,vi_pham_atgt) VALUE (N'$ten_lop',N'$gio_tot',N'$gio_kha',N'$gio_tb',N'$gio_yeu',N'$so_diem_gioi',N'$so_diem_yeu_kem',N'$vi_pham_atgt')")){
                 echo "<script>alert('Lưu thành công!');</script>";
             }else{
                 echo "<script>alert('Lưu thất bại!');</script>";
             }
 
         }
+
         $conn->close();
     ?>
-    
     <div class="container">
         <form method="POST" action="">
-            <div class="form-group">
-                <label for="id_lop">Lớp</label>
-                <input name="id_lop" class="form-control" placeholder="Tên Lớp">
-            </div>
+
             <div class="form-group">
                 <label for="gio_tot">Giờ tốt</label>
                 <input name="gio_tot" class="form-control" placeholder="Nếu 100% giờ tốt nhập 1, không 100% nhập 0.">
