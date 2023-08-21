@@ -5,6 +5,7 @@
     #print_r(getdate());
     $_SESSION['thu']=date('w');
     $_SESSION['gio']=date('G');
+    $_SESSION['phut']=date('i')
     #print_r($list);
 ?>
 <!DOCTYPE html>
