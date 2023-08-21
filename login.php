@@ -3,6 +3,7 @@
     global $conn;
     session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,11 +33,26 @@
 									$row=mysqli_fetch_assoc($result);
 									if($row){
                                         if($row["role"]=="1"){
-                                            header("Location:thiduatuan.php");
+                                            header("Location:nhanloi.php");
                                             
                                         }else{
                                             $_SESSION['id_lop']=$row['id_lop'];
-                                            header("Location:table.php");
+                                            if($_SESSION['thu']!=5){
+                                                header('location:time.php');
+                                                if($_SESSION['gio']<10){
+                                                    header('location:time.php');
+                                                }
+                                                if($_SESSION['gio']>15){
+                                                    header('location:time.php');
+                                                }
+                                            }
+                                            else{
+                                                if($_SESSION['gio']=15){
+                                                    if($_SESSION['phut']>0){
+                                                        header("Location:table.php");
+                                                    }
+                                                }
+                                            }
                                         }
 									  
 									}else{
