@@ -86,7 +86,7 @@
             </div>
             <button type="submit" class="btn btn-primary" name="add">Lưu</button>
             <div>
-                <a href="logout.php" class="btn btn-info" role="button">Logout</a>
+                <a href="logout.php" class="btn btn-info" role="button">Đăng xuất</a>
             </div>
             <div>
                 <a href="baoloi.php" class="btn btn-info" role="button">Báo nhập sai!</a>
