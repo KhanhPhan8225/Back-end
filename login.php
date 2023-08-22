@@ -37,20 +37,34 @@
                                             
                                         }else{
                                             $_SESSION['id_lop']=$row['id_lop'];
-                                            if($_SESSION['thu']!=5){
+                                            $_SESSION['pass']=$row['pass'];
+                                            #CN=0 T2=1 ...
+                                            if($_SESSION['thu']!=2){
                                                 header('location:time.php');
-                                                if($_SESSION['gio']<10){
-                                                    header('location:time.php');
-                                                }
-                                                if($_SESSION['gio']>15){
-                                                    header('location:time.php');
-                                                }
                                             }
                                             else{
-                                                if($_SESSION['gio']=15){
-                                                    if($_SESSION['phut']>0){
-                                                        header("Location:table.php");
+                                                if($_SESSION['gio']>9){
+                                                    #cho lên host thì chỉnh thành 15
+                                                    if($_SESSION['gio']<23){
+                                                        header('location:index.php');
                                                     }
+                                                    else{
+                                                        #cho lên host thì chỉnh thành 15
+                                                        if($_SESSION['gio']=23){
+                                                            if($_SESSION['phut']=0){
+                                                                header('location:index.php');
+                                                            }
+                                                            else{
+                                                                header('location:time.php');
+                                                            }
+                                                        }
+                                                        else{
+                                                            header('location:time.php');
+                                                        }
+                                                    }
+                                                }
+                                                else{
+                                                    header('location:time.php');
                                                 }
                                             }
                                         }
@@ -85,9 +99,6 @@
                                         </button>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
