@@ -24,7 +24,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
 								<?php
-                                print($_SESSION['thu']);
+
 								if($_SERVER["REQUEST_METHOD"]=="POST")
                                 {
 	
