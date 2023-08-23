@@ -37,7 +37,7 @@
                                             header("Location:nhanloi.php");    
                                         }else{
                                             $_SESSION['id_lop']=$row['id_lop'];
-                                            $_SESSION['pass']=$row['pass'];
+                                            #$_SESSION['pass']=$row['pass'];
                                             #CN=0 T2=1 ...
                                             if($_SESSION['thu']==3){
                                                 if($_SESSION['gio']>9){
