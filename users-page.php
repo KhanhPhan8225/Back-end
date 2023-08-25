@@ -19,6 +19,10 @@
     </div>
     <hr>
     <div>
+        <a href="baoloi.php" class="btn btn-info" role="button">Báo nhập sai</a>
+    </div>
+    <hr>
+    <div>
         <a href="change-password.php" class="btn btn-info" role="button">Đổi mật khẩu</a>
     </div>
     <hr>
