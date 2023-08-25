@@ -1,5 +1,5 @@
 <?php
-include "class.database.php";
+require_once "class.database.php";
 global $conn;
 $result=mysqli_query($conn,"SELECT * FROM baoloi");
 ?>
@@ -13,11 +13,18 @@ $result=mysqli_query($conn,"SELECT * FROM baoloi");
 </head>
 <?php
         session_start();
-        if(empty($_SESSION['id_lop'])){
+        if($_SESSION['role']!=1){
             header('location:login.php');
         }
     ?>
+	<?php
+		if(isset($_POST["add"])){
+				$reset =mysqli_query($conn,"DELETE FROM baoloi");
+				$conn->close();
+            }
+	?>
 <body id="page-top">
+	<h>Bảng báo lỗi</h>
      <div class="card-body">
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -40,6 +47,11 @@ $result=mysqli_query($conn,"SELECT * FROM baoloi");
 				  
 				</tbody>
 			</table>
+		</div>
+		<div class="container">
+			<form method="POST" action="">
+				<button type="submit" class="btn btn-primary" name="add">Reset bảng lỗi</button>
+			</form>
 		</div>
 	</div>
 </body>
