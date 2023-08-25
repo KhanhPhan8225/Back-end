@@ -34,19 +34,18 @@
 									$row=mysqli_fetch_assoc($result);
 									if($row){
                                         if($row["role"]=="1"){
-                                            header("Location:nhanloi.php");    
+                                            $_SESSION['role']=$row["role"];
+                                            header("Location:adminpage.php");    
                                         }else{
                                             $_SESSION['id_lop']=$row['id_lop'];
-                                            #$_SESSION['pass']=$row['pass'];
-                                            #CN=0 T2=1 ...
-                                            if($_SESSION['thu']==3){
+                                            if($_SESSION['thu']==5){
                                                 if($_SESSION['gio']>9){
-                                                    if($_SESSION['gio']<15){
-                                                        header('location:index.php');
+                                                    if($_SESSION['gio']<24){
+                                                        header('location:users-page.php');
                                                     }
                                                     elseif($_SESSION['gio']==15){
                                                         if($_SESSION['phut']==0){
-                                                            header('location:index.php');
+                                                            header('location:users-page.php');
                                                         }
                                                         else{
                                                             header('location:time.php');
