@@ -1,22 +1,24 @@
+<?php
+    session_start();
+    date_default_timezone_set('Asia/Bangkok');
+    #$list= timezone_identifiers_list();
+    #print_r(getdate());
+    $_SESSION['thu']=date('w');
+    #print(date('w'));
+    $_SESSION['gio']=date('G');
+    $_SESSION['phut']=date('i')
+    #print_r($list);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loged</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <title>404-NOT FOUND</title>
 </head>
 <body>
-    <?php
-        session_start();
-        if(empty($_SESSION['id_lop'])){
-            header('location:login.php');
-        }
-    ?>
-    <h2>Chi Đoàn <?php echo $_SESSION['id_lop'];?></h2>
-    <div>
-        <a href="table.php" class="btn btn-info" role="button">Đến trang nhập điểm thi đua</a>
-    </div>
+    <h2>Chưa đến thời gian đăng nhập, vui lòng chờ.</h2>
     <hr>
     <div>
         <a href="change-password.php" class="btn btn-info" role="button">Đổi mật khẩu</a>

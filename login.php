@@ -24,6 +24,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
 								<?php
+
 								if($_SERVER["REQUEST_METHOD"]=="POST")
                                 {
 	
@@ -33,47 +34,41 @@
 									$row=mysqli_fetch_assoc($result);
 									if($row){
                                         if($row["role"]=="1"){
-                                            header("Location:nhanloi.php");
-                                            
+                                            $_SESSION['role']=$row["role"];
+                                            header("Location:adminpage.php");    
                                         }else{
                                             $_SESSION['id_lop']=$row['id_lop'];
-                                            $_SESSION['pass']=$row['pass'];
-                                            #CN=0 T2=1 ...
-                                            if($_SESSION['thu']!=2){
-                                                header('location:time.php');
-                                            }
-                                            else{
+                                            if($_SESSION['thu']==5){
                                                 if($_SESSION['gio']>9){
-                                                    #cho lên host thì chỉnh thành 15
-                                                    if($_SESSION['gio']<23){
-                                                        header('location:index.php');
+                                                    if($_SESSION['gio']<24){
+                                                        header('location:users-page.php');
                                                     }
-                                                    else{
-                                                        #cho lên host thì chỉnh thành 15
-                                                        if($_SESSION['gio']=23){
-                                                            if($_SESSION['phut']=0){
-                                                                header('location:index.php');
-                                                            }
-                                                            else{
-                                                                header('location:time.php');
-                                                            }
+                                                    elseif($_SESSION['gio']==15){
+                                                        if($_SESSION['phut']==0){
+                                                            header('location:users-page.php');
                                                         }
                                                         else{
                                                             header('location:time.php');
                                                         }
                                                     }
+                                                    else{
+                                                        header('location:time.php');
+                                                    }
                                                 }
                                                 else{
                                                     header('location:time.php');
                                                 }
+
+									        }
+                                            else{
+                                                header('location:time.php');
                                             }
-                                        }
-									  
-									}else{
+									    }
+                                    }
+                                    else{
                                         echo '<script>alert("Tên đăng nhập hoặc mật khẩu không đúng!")</script>';
-                                            
-									}
-									}
+                                    }
+                                }
 									?>							
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Đăng nhập</h1>
